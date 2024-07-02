@@ -1,6 +1,10 @@
 from flask import Flask, make_response, redirect, render_template, request
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
+
+
 
 players = ['Patrick Mahomes', 'Travis Kelce', 'Isah Pacheco','Derrick Nnadi', 'George Karlaftis']
 

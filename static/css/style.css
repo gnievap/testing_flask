@@ -2,18 +2,18 @@ html {
     font-family: sans-serif;
 }
 
-ul{
+/* ul{
     list-style-type: none;
-}
+} */
 
-nav {
+/* nav {
     height: 75px;
     background-color: beige;
-}
+} */
 
-nav li {
+/* nav li {
     display: inline;
-}
+} */
 
 img {
     max-width: 100px;
