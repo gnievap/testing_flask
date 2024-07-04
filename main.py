@@ -1,5 +1,5 @@
 from flask import (Flask, make_response, redirect, render_template, request,
-                   session)
+                   session, url_for)
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import PasswordField, StringField, SubmitField
@@ -36,17 +36,24 @@ def index():
 
     return response
 
-@app.route('/hello')
+@app.route('/hello', methods=['GET', 'POST'])
 def hello():
     # user_ip = request.cookies.get('user_ip')
     user_ip = session.get('user_ip')
+    username = session.get('username')
     login_form = LoginForm()
     context = {
         'user_ip':user_ip,
         'players':players,
-        'login_form': login_form
+        'login_form': login_form,
+        'username': username
     }
 
+    if login_form.validate_on_submit():
+        username = login_form.username.data
+        session['username'] = username
+
+        return redirect(url_for('index'))
     # user_ip = request.remote_addr
     # return 'Hola, tu IP es {}'.format(user_ip)
     return render_template('hello.html',  **context)
