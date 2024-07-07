@@ -1,3 +1,5 @@
+import unittest
+
 from flask import (Flask, flash, make_response, redirect, render_template,
                    request, session, url_for)
 from flask_bootstrap import Bootstrap
@@ -17,6 +19,11 @@ class LoginForm (FlaskForm):
     username = StringField('Nombre de usuario', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Enviar')
+
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
 
 @app.errorhandler(404)
 def not_found(error):
