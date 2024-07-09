@@ -1,24 +1,19 @@
 import unittest
 
-from flask import (Flask, flash, make_response, redirect, render_template,
-                   request, session, url_for)
+from flask import (flash, make_response, redirect, render_template, request,
+                   session, url_for)
 from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-from wtforms.fields import PasswordField, StringField, SubmitField
-from wtforms.validators import DataRequired
 
-app = Flask(__name__)
-bootstrap = Bootstrap(app)
+from app import create_app
+from app.forms import LoginForm
 
-app.config['SECRET_KEY'] = 'SUPER SECRETO'
+app = create_app()
+
 
 
 players = ['Patrick Mahomes', 'Travis Kelce', 'Isah Pacheco','Derrick Nnadi', 'George Karlaftis']
 
-class LoginForm (FlaskForm):
-    username = StringField('Nombre de usuario', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Enviar')
+
 
 @app.cli.command()
 def test():
