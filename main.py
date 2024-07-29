@@ -2,7 +2,6 @@ import unittest
 
 from flask import (flash, make_response, redirect, render_template, request,
                    session, url_for)
-from flask_bootstrap import Bootstrap
 
 from app import create_app
 from app.forms import LoginForm
@@ -42,7 +41,7 @@ def index():
 def hello():
     user_ip = session.get('user_ip')
     username = session.get('username')
-    
+     
     context = {
         'user_ip': user_ip,
         'players': players,
